@@ -150,9 +150,8 @@
       gap: 14px;
       text-decoration: none;
     }
-    /* Logo mark — inline SVG so it works without file path issues in all browsers */
     .nav-logo-mark {
-      width: 44px; height: 44px; flex-shrink: 0;
+      width: 44px; height: 44px; flex-shrink: 0; object-fit: contain;
     }
     .nav-brand-text {
       font-family: var(--font-display);
@@ -928,19 +927,7 @@
 <!-- ======================================================== NAVIGATION -->
 <header id="nav">
   <a class="nav-brand" href="#hero">
-    <!-- Inline SVG logo mark: hop cone + bowler hat silhouette -->
-    <svg class="nav-logo-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <!-- Bowler hat -->
-      <ellipse cx="22" cy="11" rx="14" ry="3" fill="rgba(255,255,255,0.9)"/>
-      <rect x="10" y="5" width="24" height="7" rx="3" fill="rgba(255,255,255,0.9)"/>
-      <!-- Hop cone body -->
-      <path d="M22 15 C14 17 11 22 12 28 C13 33 17 37 22 39 C27 37 31 33 32 28 C33 22 30 17 22 15Z" fill="rgba(255,255,255,0.85)"/>
-      <!-- Hop bracts -->
-      <path d="M22 15 C18 12 14 14 13 18 C16 16 20 17 22 20Z" fill="rgba(232,144,42,0.9)"/>
-      <path d="M22 15 C26 12 30 14 31 18 C28 16 24 17 22 20Z" fill="rgba(232,144,42,0.9)"/>
-      <path d="M14 22 C11 20 10 24 11 27 C13 25 15 24 17 26Z" fill="rgba(232,144,42,0.7)"/>
-      <path d="M30 22 C33 20 34 24 33 27 C31 25 29 24 27 26Z" fill="rgba(232,144,42,0.7)"/>
-    </svg>
+    <img class="nav-logo-mark" src="Assets/01_Logos/logoAsset-2-2.png" alt="The Gentlemen's Beer Shop" />
     <div class="nav-brand-text">
       The Gentlemen's Beer Shop
       <small>Craft Beer &amp; Food</small>
@@ -1212,19 +1199,19 @@
           </tr>
           <tr>
             <td>Štvrtok</td>
-            <td>14:00 – 23:00</td>
+            <td>14:00 – 22:00</td>
           </tr>
           <tr>
             <td>Piatok</td>
-            <td>14:00 – 23:00</td>
+            <td>10:00 – 24:00</td>
           </tr>
           <tr>
             <td>Sobota</td>
-            <td>12:00 – 23:00</td>
+            <td>10:00 – 24:00</td>
           </tr>
           <tr class="closed">
             <td>Nedeľa</td>
-            <td>Zatvorené</td>
+            <td>14:00 – 21:00</td>
           </tr>
         </tbody>
       </table>
