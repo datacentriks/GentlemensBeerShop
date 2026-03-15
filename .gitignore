@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Print-production PDFs (large, not needed for web)
+Assets/06_Print_Production/
+
+# Raw / unedited photo duplicates (keep clean versions only)
+# Uncomment if you want to exclude the full photo library from the repo:
+# Assets/02_Photography/
+
+# Node (if you add a build step later)
+node_modules/
+dist/
+.env
+
+# Editor
+.vscode/
+.idea/
+*.swp
