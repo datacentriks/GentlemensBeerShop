@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gentlemen's Beer Shop — Craft Beer &amp; Food, Bratislava</title>
+  <meta name="description" content="Kurátorský výber tých najzaujímavejších craft pív zo celého sveta. Craft Beer & Food, Bratislava." />
+
+  <!-- =====================================================
+       THE GENTLEMEN'S BEER SHOP — Website v1.0
+       Dev note: Replace placeholder address/hours/contact
+       with real data before going live.
+       Font stack: Playfair Display + Raleway + Inter (Google Fonts)
+       All image paths are relative to this file's location.
+  ===================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --green:        #1B4D3E;
+      --green-mid:    #2a6b55;
+      --green-hover:  #154033;
+      --red:          #C0392B;
+      --amber:        #E8902A;
+      --amber-dark:   #d47c20;
+      --teal:         #5BC9B0;
+      --cream:        #F7F3EC;
+      --cream-dark:   #EDE8DC;
+      --taupe:        #9A8970;
+      --charcoal:     #2C2C2C;
+      --white:        #ffffff;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-alt:     'Raleway', sans-serif;
+      --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+      --max-w: 1200px;
+      --nav-h: 72px;
+      --section-px: 4rem;
+      --section-py: 6rem;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--charcoal);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1.12;
+      margin-bottom: 1.25rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2.25rem;
+      background: var(--amber);
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--font-alt);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: none;
+    }
+    .btn:hover {
+      background: var(--amber-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(232,144,42,0.3);
+    }
+    .btn--green {
+      background: var(--green);
+    }
+    .btn--green:hover {
+      background: var(--green-hover);
+      box-shadow: 0 8px 20px rgba(27,77,62,0.3);
+    }
+    .btn--outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.55);
+      color: var(--white);
+    }
+    .btn--outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.8);
+      box-shadow: none;
+    }
+
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--section-px);
+      background: rgba(27, 77, 62, 0.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: box-shadow 0.3s;
+    }
+    #nav.scrolled {
+      box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    /* Logo mark — inline SVG so it works without file path issues in all browsers */
+    .nav-logo-mark {
+      width: 44px; height: 44px; flex-shrink: 0;
+    }
+    .nav-brand-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .nav-brand-text small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-reserve {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-reserve:hover { color: var(--amber); }
+
+    /* Hamburger — mobile */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: rgba(255,255,255,0.8);
+      transition: 0.3s;
+    }
+
+    /* Mobile nav drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: var(--green-hover);
+      padding: 1.5rem var(--section-px);
+      z-index: 190;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      letter-spacing: 0.06em;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('02_Photography/Product_Photography/DSC_1543.JPG');
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(12, 35, 28, 0.55) 0%,
+        rgba(12, 35, 28, 0.45) 50%,
+        rgba(12, 35, 28, 0.75) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .hero-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      margin: 0 auto 2.75rem;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s forwards;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: fadeIn 1s 1.4s forwards;
+    }
+    .hero-scroll-indicator span {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.45), transparent);
+      animation: scrollPulse 2s 1.8s infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.15); }
+    }
+
+
+    /* ============================================================
+       TICKER / MARQUEE STRIP
+    ============================================================ */
+    .ticker {
+      background: var(--amber);
+      padding: 0.75rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track span {
+      display: inline-block;
+      padding: 0 3rem;
+      font-family: var(--font-alt);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .ticker-track span::before {
+      content: '✦';
+      margin-right: 1.5rem;
+      opacity: 0.6;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      background: var(--white);
+      padding: var(--section-py) var(--section-px);
+    }
+
+    .about-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-body p {
+      font-size: 1.025rem;
+      line-height: 1.82;
+      color: #4f4f4f;
+      margin-bottom: 1.2rem;
+    }
+    .about-body p strong { color: var(--green); }
+
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.75rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-dark);
+    }
+    .stat {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+    .stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--taupe);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-visual img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 1.75rem;
+      left: -2rem;
+      background: var(--green);
+      color: var(--white);
+      padding: 1.25rem 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 8px 32px rgba(27,77,62,0.35);
+    }
+    .about-badge-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.3rem;
+    }
+
+
+    /* ============================================================
+       BEER SELECTION
+    ============================================================ */
+    #beers {
+      padding: var(--section-py) var(--section-px);
+      background: var(--cream);
+    }
+
+    .beers-header {
+      max-width: var(--max-w);
+      margin: 0 auto 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .beers-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .beer-card {
+      background: var(--white);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.2,.8,.3,1), box-shadow 0.3s;
+    }
+    .beer-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(27,77,62,0.12);
+    }
+    .beer-card-thumb {
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .beer-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s cubic-bezier(.2,.8,.3,1);
+    }
+    .beer-card:hover .beer-card-thumb img {
+      transform: scale(1.06);
+    }
+    .beer-card-abv {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(27,77,62,0.85);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+    }
+    .beer-card-body {
+      padding: 1.5rem 1.75rem 2rem;
+    }
+    .beer-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .beer-card-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .beer-card-desc {
+      font-size: 0.88rem;
+      color: #6a6a6a;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .beer-detail-row {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.72rem;
+      color: var(--taupe);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--cream-dark);
+      padding-top: 1rem;
+    }
+    .beer-detail-row span { font-weight: 600; color: var(--green); }
+
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    #gallery {
+      background: var(--green);
+      padding: var(--section-py) var(--section-px) calc(var(--section-py) - 1rem);
+    }
+    #gallery .eyebrow { color: var(--amber); }
+    #gallery .section-title { color: var(--white); margin-bottom: 3rem; }
+
+    .gallery-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 0.625rem;
+    }
+
+    .g-item {
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) saturate(1.05);
+      transition: transform 0.55s cubic-bezier(.2,.8,.3,1), filter 0.35s;
+    }
+    .g-item:hover img {
+      transform: scale(1.07);
+      filter: brightness(1) saturate(1.1);
+    }
+    .g-item--col2 { grid-column: span 2; }
+    .g-item--row2 { grid-row: span 2; }
+    .g-item--row2 img { height: 100%; object-position: center 30%; }
+
+    .gallery-cta {
+      max-width: var(--max-w);
+      margin: 1.75rem auto 0;
+      text-align: center;
+    }
+    .gallery-cta a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .gallery-cta a:hover { color: var(--amber); }
+
+
+    /* ============================================================
+       OPENING HOURS
+    ============================================================ */
+    #hours {
+      background: var(--cream-dark);
+      padding: var(--section-py) var(--section-px);
+    }
+
+    .hours-layout {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .hours-table tr {
+      border-bottom: 1px solid rgba(27,77,62,0.1);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td {
+      padding: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .hours-table td:first-child {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--green);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .hours-table tr.closed td:last-child {
+      color: #c0b8a8;
+      font-weight: 400;
+    }
+    .hours-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--taupe);
+      line-height: 1.7;
+      padding: 1rem 1.25rem;
+      background: rgba(27,77,62,0.05);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .hours-photo { border-radius: 2px; overflow: hidden; height: 480px; }
+    .hours-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      background: var(--green);
+      padding: var(--section-py) var(--section-px);
+    }
+    #contact .eyebrow { color: var(--amber); }
+    #contact .section-title { color: var(--white); margin-bottom: 3rem; }
+
+    .contact-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-block h3 {
+      font-family: var(--font-alt);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+    .contact-block p,
+    .contact-block address {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.85;
+      font-style: normal;
+    }
+    .contact-block a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-block a:hover { color: var(--amber); }
+
+    .contact-social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Newsletter form */
+    .newsletter-box h3 {
+      font-family: var(--font-alt);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .newsletter-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-box p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .nl-form {
+      display: flex;
+    }
+    .nl-form input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-right: none;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .nl-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .nl-form input:focus {
+      border-color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.14);
+    }
+    .nl-form button {
+      padding: 0.8rem 1.5rem;
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      font-family: var(--font-alt);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nl-form button:hover { background: var(--amber-dark); }
+
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: #0e2b22;
+      padding: 1.75rem var(--section-px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+    .footer-copy span { color: var(--amber); }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.65); }
+
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      :root {
+        --section-px: 2.5rem;
+        --section-py: 5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --section-px: 1.5rem;
+        --section-py: 4rem;
+      }
+
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .about-visual { order: -1; }
+      .about-visual img { height: 380px; }
+      .about-badge { left: 1rem; }
+
+      .beers-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .beers-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .g-item--col2 { grid-column: span 2; }
+      .g-item--row2 { grid-row: span 1; }
+
+      .hours-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hours-photo { height: 280px; }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      #footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn--outline { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================================================== NAVIGATION -->
+<header id="nav">
+  <a class="nav-brand" href="#hero">
+    <!-- Inline SVG logo mark: hop cone + bowler hat silhouette -->
+    <svg class="nav-logo-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Bowler hat -->
+      <ellipse cx="22" cy="11" rx="14" ry="3" fill="rgba(255,255,255,0.9)"/>
+      <rect x="10" y="5" width="24" height="7" rx="3" fill="rgba(255,255,255,0.9)"/>
+      <!-- Hop cone body -->
+      <path d="M22 15 C14 17 11 22 12 28 C13 33 17 37 22 39 C27 37 31 33 32 28 C33 22 30 17 22 15Z" fill="rgba(255,255,255,0.85)"/>
+      <!-- Hop bracts -->
+      <path d="M22 15 C18 12 14 14 13 18 C16 16 20 17 22 20Z" fill="rgba(232,144,42,0.9)"/>
+      <path d="M22 15 C26 12 30 14 31 18 C28 16 24 17 22 20Z" fill="rgba(232,144,42,0.9)"/>
+      <path d="M14 22 C11 20 10 24 11 27 C13 25 15 24 17 26Z" fill="rgba(232,144,42,0.7)"/>
+      <path d="M30 22 C33 20 34 24 33 27 C31 25 29 24 27 26Z" fill="rgba(232,144,42,0.7)"/>
+    </svg>
+    <div class="nav-brand-text">
+      The Gentlemen's Beer Shop
+      <small>Craft Beer &amp; Food</small>
+    </div>
+  </a>
+
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
+    <li><a href="#about">O nás</a></li>
+    <li><a href="#beers">Pivá</a></li>
+    <li><a href="#gallery">Galéria</a></li>
+    <li><a href="#hours">Hodiny</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+
+  <div class="nav-cta">
+    <a class="nav-reserve" href="#contact">Navštívte nás ↗</a>
+  </div>
+
+  <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile drawer -->
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="#about" onclick="closeDrawer()">O nás</a>
+  <a href="#beers" onclick="closeDrawer()">Pivá</a>
+  <a href="#gallery" onclick="closeDrawer()">Galéria</a>
+  <a href="#hours" onclick="closeDrawer()">Hodiny</a>
+  <a href="#contact" onclick="closeDrawer()">Kontakt</a>
+</nav>
+
+
+<!-- ======================================================== HERO -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg" id="heroBg"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Craft Beer &amp; Food · Bratislava</p>
+    <h1 class="hero-title">
+      The <em>Gentlemen's</em><br>Beer Shop
+    </h1>
+    <p class="hero-sub">
+      Kurátorský výber tých najzaujímavejších craft pív zo celého sveta.
+      Pre tých, ktorí vedia, čo chcú.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#beers">Pozri ponuku</a>
+      <a class="btn btn--outline" href="#contact">Navštívte nás</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ======================================================== TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span>Craft Beer</span>
+    <span>Hazy IPA</span>
+    <span>Pastry Stout</span>
+    <span>Wild Fermented Sour</span>
+    <span>New England IPA</span>
+    <span>Czech Lager</span>
+    <span>Imperial Stout</span>
+    <span>West Coast IPA</span>
+    <span>Craft Beer</span>
+    <span>Hazy IPA</span>
+    <span>Pastry Stout</span>
+    <span>Wild Fermented Sour</span>
+    <span>New England IPA</span>
+    <span>Czech Lager</span>
+    <span>Imperial Stout</span>
+    <span>West Coast IPA</span>
+  </div>
+</div>
+
+
+<!-- ======================================================== ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-body">
+      <p class="eyebrow">O nás</p>
+      <h2 class="section-title">Viac ako len<br>pivný bar.</h2>
+      <p>
+        <strong>The Gentlemen's Beer Shop</strong> je miesto, kde craft pivo stretáva kultúru.
+        Starostlivo kurujeme výber pív od najlepších svetových pivovarov —
+        od hazardných hazy IPA až po komplexné tmavé lagery.
+      </p>
+      <p>
+        Každé pivo v našej ponuke je vybrané s rovnakým dôrazom na kvalitu,
+        remeslo a charakter. Nájdete tu limitované edície s umeleckými etiketami,
+        fľaše, ktoré hovoria príbeh, aj klasické čapované pivá priamo z pivovaru.
+      </p>
+      <p>
+        Okrem piva ponúkame jedlo, ktoré sa k nemu hodí — a priestor, v ktorom
+        sa cítite dobre, bez ohľadu na to, či prídete sami, s priateľmi alebo
+        s novým pivom, o ktorom chcete vedieť viac.
+      </p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Druhov piva</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Pivovarov</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Dobrých chvíľ</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <img
+        src="02_Photography/Product_Photography/DSC_1275.JPG"
+        alt="Collection of craft beer cans"
+        loading="lazy"
+      />
+      <div class="about-badge">
+        <div class="about-badge-num">7×</div>
+        <div class="about-badge-text">Nové pivá každý týždeň</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================== BEER SELECTION -->
+<section id="beers">
+  <div class="beers-header">
+    <div>
+      <p class="eyebrow">Výber piva</p>
+      <h2 class="section-title">Čo máme práve<br>v ponuke</h2>
+    </div>
+    <a class="btn btn--green" href="#contact">Celá ponuka</a>
+  </div>
+
+  <div class="beers-grid">
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="02_Photography/Product_Photography/DSC_1415.JPG" alt="Basqueland Sugarman Pastry Hazy IPA" loading="lazy" />
+        <div class="beer-card-abv">Limitovaná edícia</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">Hazy IPA · Plechovka</div>
+        <h3 class="beer-card-name">Pastry &amp; Haze Series</h3>
+        <p class="beer-card-desc">
+          Zakalené, tropicky voňavé IPA s pastry charakterom. Každá séria je unikát —
+          limitovaná edícia s umeleckou etiketou od nezávislých pivovarov ako Basqueland, Zichovec a ďalších.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>Hazy / NEIPA</span></div>
+          <div>ABV: <span>6–8%</span></div>
+          <div>Zdroj: <span>EU Craft</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="02_Photography/Product_Photography/DSC_1502.JPG" alt="Clock IPA bottle in sunlight" loading="lazy" />
+        <div class="beer-card-abv">Classic</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">IPA · Fľaša</div>
+        <h3 class="beer-card-name">Svetlé &amp; Čisté</h3>
+        <p class="beer-card-desc">
+          Výber svetlých pív s citrusovými a kvetinovými tónmi. Clock IPA, Sibeeria IPAZOOM
+          a ďalšie — pre tých, ktorí hľadajú čistú, pitnú horkosť.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>West Coast IPA</span></div>
+          <div>ABV: <span>5–6.5%</span></div>
+          <div>Zdroj: <span>CZ / SK</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="02_Photography/Branded_Glassware/PHOTO-2026-03-09-15-00-48.jpg" alt="SiBeeria IPA poured in glass" loading="lazy" />
+        <div class="beer-card-abv">Rotujúca ponuka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">Draft · Na Čap</div>
+        <h3 class="beer-card-name">Točené pivá</h3>
+        <p class="beer-card-desc">
+          Rotujúca ponuka čapovaných pív priamo z pivovaru. Vždy čerstvé, vždy zaujímavé.
+          Pýtaj sa čašníka — vždy vieme, čo máme a prečo to stojí za vyskúšanie.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>Rotujúce</span></div>
+          <div>Teplota: <span>4–6 °C</span></div>
+          <div>Čerstvé: <span>Weekly</span></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== GALLERY -->
+<section id="gallery">
+  <p class="eyebrow" style="text-align:center;">Pohľad dovnútra</p>
+  <h2 class="section-title" style="text-align:center;">Atmosféra &amp; Pivá</h2>
+
+  <div class="gallery-grid">
+    <!-- Row 1: col2 + 1 + row-span 1 -->
+    <div class="g-item g-item--row2">
+      <img src="02_Photography/Product_Photography/DSC_1543.JPG"
+           alt="The Gentlemen's Beer Shop branded glass with golden hazy IPA" loading="lazy" />
+    </div>
+    <div class="g-item">
+      <img src="02_Photography/Product_Photography/DSC_1285.JPG"
+           alt="Craft beer can close-up with colourful label" loading="lazy" />
+    </div>
+    <div class="g-item">
+      <img src="02_Photography/Product_Photography/DSC_1303.JPG"
+           alt="Beer can selection lineup" loading="lazy" />
+    </div>
+    <!-- Row 2 -->
+    <div class="g-item g-item--col2">
+      <img src="02_Photography/Product_Photography/DSC_1275.JPG"
+           alt="Wide craft beer can display collection" loading="lazy" />
+    </div>
+    <div class="g-item">
+      <img src="02_Photography/Branded_Glassware/PHOTO-2026-03-09-15-00-49.jpg"
+           alt="SiBeeria IPA Zoom bottle with poured pint glass" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="gallery-cta">
+    <a href="https://www.instagram.com" target="_blank" rel="noopener">
+      Viac na Instagrame @gentlemensbeershop ↗
+    </a>
+  </div>
+</section>
+
+
+<!-- ======================================================== HOURS -->
+<section id="hours">
+  <div class="hours-layout">
+    <div>
+      <p class="eyebrow">Kedy nás nájdete</p>
+      <h2 class="section-title">Otváracie<br>Hodiny</h2>
+
+      <!-- TODO: Replace with actual opening hours -->
+      <table class="hours-table" aria-label="Opening hours">
+        <tbody>
+          <tr>
+            <td>Pondelok</td>
+            <td>14:00 – 22:00</td>
+          </tr>
+          <tr>
+            <td>Utorok</td>
+            <td>14:00 – 22:00</td>
+          </tr>
+          <tr>
+            <td>Streda</td>
+            <td>14:00 – 22:00</td>
+          </tr>
+          <tr>
+            <td>Štvrtok</td>
+            <td>14:00 – 23:00</td>
+          </tr>
+          <tr>
+            <td>Piatok</td>
+            <td>14:00 – 23:00</td>
+          </tr>
+          <tr>
+            <td>Sobota</td>
+            <td>12:00 – 23:00</td>
+          </tr>
+          <tr class="closed">
+            <td>Nedeľa</td>
+            <td>Zatvorené</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="hours-note">
+        ℹ Hodiny sa môžu meniť počas sviatkov.<br>
+        Sledujte nás na sociálnych sieťach pre aktuálne informácie.
+      </div>
+    </div>
+
+    <div class="hours-photo">
+      <img
+        src="02_Photography/Product_Photography/DSC_1550.JPG"
+        alt="Beer and atmosphere at The Gentlemen's Beer Shop"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================== CONTACT -->
+<section id="contact">
+  <p class="eyebrow">Kde nás nájdete</p>
+  <h2 class="section-title">Navštívte nás</h2>
+
+  <div class="contact-grid">
+
+    <div>
+      <div class="contact-block" style="margin-bottom:2rem;">
+        <h3>Adresa</h3>
+        <!-- TODO: Replace with actual address -->
+        <address>
+          Ulica a číslo,<br>
+          Bratislava, Slovensko
+        </address>
+      </div>
+      <div class="contact-block">
+        <h3>Kontakt</h3>
+        <p>
+          <a href="mailto:info@gentlemensbeershop.sk">info@gentlemensbeershop.sk</a><br>
+          <!-- TODO: Add phone number -->
+          <a href="tel:+421000000000">+421 000 000 000</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <h3>Sledujte nás</h3>
+      <div class="contact-social-links">
+        <a href="https://www.facebook.com/gentlemensbeershop" target="_blank" rel="noopener">
+          Facebook — The Gentlemen's Beer Shop ↗
+        </a>
+        <a href="https://www.instagram.com/gentlemensbeershop" target="_blank" rel="noopener">
+          Instagram — @gentlemensbeershop ↗
+        </a>
+      </div>
+      <br>
+      <h3>Doručenie</h3>
+      <p>
+        Ponúkame online objednávky a doručenie po Bratislave.
+        Napíšte nám na email alebo sociálne siete.
+      </p>
+    </div>
+
+    <div class="newsletter-box">
+      <h3>Newsletter</h3>
+      <h4>Nové pivá každý<br>týždeň</h4>
+      <p>
+        Buďte prví, kto sa dozvie o nových prírastkoch,
+        špeciálnych degustáciách a akciách.
+      </p>
+      <form class="nl-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="váš@email.sk" autocomplete="email" required />
+        <button type="submit">Prihlásiť</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== FOOTER -->
+<footer id="footer">
+  <p class="footer-copy">
+    © 2026 <span>The Gentlemen's Beer Shop</span> · Bratislava · All rights reserved
+  </p>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="#about">O nás</a>
+    <a href="#beers">Pivá</a>
+    <a href="#contact">Kontakt</a>
+    <!-- TODO: Link to privacy policy page -->
+    <a href="#">Ochrana súkromia</a>
+  </nav>
+</footer>
+
+
+<!-- ======================================================== SCRIPTS -->
+<script>
+  /* ---- Sticky nav shadow on scroll ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ---- Parallax hero bg (subtle) ---- */
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.25}px)`;
+    }
+  }, { passive: true });
+
+  /* ---- Mobile hamburger ---- */
+  const btn = document.getElementById('hamburgerBtn');
+  const drawer = document.getElementById('navDrawer');
+  btn.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  /* ---- Newsletter stub ---- */
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Ďakujeme!';
+    btn.style.background = '#1B4D3E';
+    e.target.querySelector('input').value = '';
+    setTimeout(() => {
+      btn.textContent = 'Prihlásiť';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  /* ---- Simple scroll-reveal for cards ---- */
+  const revealEls = document.querySelectorAll('.beer-card, .about-grid, .gallery-grid');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
