@@ -1,0 +1,72 @@
+{
+  "place": {
+    "name": "The Gentlemen's Beer Shop",
+    "address": "15, Mederčská 732, Komárno, 945 01 Komárno",
+    "rating": 4.8,
+    "totalReviews": 599,
+    "priceRange": "10 – 15 €",
+    "category": "Piváreň",
+    "phone": "0915 390 227",
+    "website": "https://gentlemensbeershop.sk/"
+  },
+  "ratingBreakdown": {
+    "5_star": 505,
+    "4_star": 73,
+    "3_star": 12,
+    "2_star": 2,
+    "1_star": 7
+  },
+  "scrapedAt": "2026-04-13",
+  "source": "Google Maps",
+  "note": "8 most relevant reviews scraped. Some review texts may be slightly truncated due to Google Maps rendering limits.",
+  "reviews": [
+    {
+      "author": "Vojtech Molnár",
+      "rating": 4,
+      "timeAgo": "pred 2 rokmi",
+      "reviewText": "Bol som tu cez pracovný deň po 12. hodine. Miesto je čisté a túto dobu skoro prázdne. Ponuka pív je ohromujúca medzi 80 až 100 druhov piva podľa sezóny. Pozor piatok a sobota sa stoly rezervujú. Na toalete bola maximálna čistota. Aj…"
+    },
+    {
+      "author": "Pavol Ďurkovič",
+      "rating": 5,
+      "timeAgo": "pred 2 rokmi",
+      "reviewText": "Sympaticky pivny podnik, ktory som si vybral za ciel bicyklovacky. V recenzii som sa docital, ze niekto isiel z okolia Trnavy 100km do Komarna. Tak ja som urobil to iste z Bernolakova a nelutujem. Maju viac druhov piva z roznych pivovarov,…"
+    },
+    {
+      "author": "Matúš Hrabčák",
+      "rating": 4,
+      "timeAgo": "pred rokom",
+      "reviewText": "Dobre miesto na remeselne pivko. Okrem capovaneho maju aj flase na predaj. Obsluha trosku nestihala, ale inak to bolo v poriadku."
+    },
+    {
+      "author": "Adam Gersic",
+      "rating": 5,
+      "timeAgo": "pred 3 rokmi",
+      "reviewText": "Kvôli tomu som šiel 100km na bicykli !!! A stálo to za to! Výborne pivo a ešte lepšia obsluha!!! Najviac som si to tam užil a chutilo tak moc že domov sa mi nechcelo :) Samozrejme batoh plný piva 🤣😂…"
+    },
+    {
+      "author": "Tímea Miklášová",
+      "rating": 5,
+      "timeAgo": "pred rokom",
+      "reviewText": "Vynikajúca nátierka a najlepšia quesadilla 😊 Dobré pivká a super atmosféra :)…"
+    },
+    {
+      "author": "Milan Jantošík",
+      "rating": 5,
+      "timeAgo": "pred 2 rokmi",
+      "reviewText": "Top čašníčky, veľmi milé a rýchle. Pivo reálne do 15sekúnd, dobré jedlo pivo všetko top. Určite sem choďte keď ste v Komárne. 👌👌👌…"
+    },
+    {
+      "author": "Ľuboš Bathó",
+      "rating": 5,
+      "timeAgo": "pred 3 rokmi",
+      "reviewText": "Ak si chcete vychutnať vynikajúce pivo v peknom prostredí tak jedine sem. Veľmi milá obsluha :)"
+    },
+    {
+      "author": "Kristina Takacova",
+      "rating": 5,
+      "timeAgo": "pred 3 rokmi",
+      "reviewText": "Ked von na pivo v Komarne tak jedine sem :) obsluha mila. Ked pivo memate radi, robia super limonady."
+    }
+  ]
+}

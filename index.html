@@ -507,123 +507,6 @@
 
 
     /* ============================================================
-       EASTER / VEĽKÁ NOC BANNER
-    ============================================================ */
-    .easter-banner {
-      background: linear-gradient(145deg, #0d3228 0%, var(--green) 42%, #123d30 100%);
-      color: var(--cream);
-      padding: 3.25rem var(--section-px);
-      border-top: 2px solid rgba(91, 201, 176, 0.35);
-      border-bottom: 2px solid rgba(15, 50, 40, 0.6);
-    }
-    .easter-banner-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-      gap: 3rem;
-      align-items: center;
-    }
-    .easter-banner .eyebrow {
-      color: var(--teal);
-      margin-bottom: 0.75rem;
-    }
-    .easter-banner-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.65rem, 3.2vw, 2.35rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-    .easter-banner-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    .easter-banner-photos figure {
-      margin: 0;
-      min-height: 0;
-      line-height: 0;
-    }
-    /* Full poster visible: cover + max-height cropped text on phones */
-    .easter-banner-photos img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 3px;
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .easter-banner-copy p {
-      font-size: 0.98rem;
-      line-height: 1.72;
-      color: rgba(247, 243, 236, 0.88);
-      margin-bottom: 1rem;
-    }
-    .easter-banner-copy p strong {
-      color: var(--white);
-      font-weight: 600;
-    }
-    .easter-banner-welcome {
-      margin-top: 1.35rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      font-size: 0.95rem;
-    }
-    .easter-banner-welcome p {
-      margin-bottom: 0.65rem;
-      color: rgba(247, 243, 236, 0.92);
-    }
-    .easter-banner-welcome p:last-child {
-      margin-bottom: 0;
-    }
-    .easter-lang-label {
-      display: inline-block;
-      font-family: var(--font-alt);
-      font-size: 0.62rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.35rem;
-    }
-    .easter-banner-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.75rem;
-    }
-    .easter-banner-actions .btn {
-      margin: 0;
-    }
-    .easter-banner-actions .btn--outline {
-      border-color: rgba(255, 255, 255, 0.45);
-      color: var(--white);
-    }
-    .easter-banner-actions .btn--outline:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.75);
-    }
-
-    @media (max-width: 900px) {
-      .easter-banner-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .easter-banner-photos {
-        order: -1;
-        grid-template-columns: 1fr;
-        max-width: none;
-        margin: 0 auto;
-        width: 100%;
-        gap: 1.25rem;
-      }
-    }
-
-
-    /* ============================================================
        ABOUT
     ============================================================ */
     #about {
@@ -1038,6 +921,102 @@
 
 
     /* ============================================================
+       REVIEWS
+    ============================================================ */
+    #reviews {
+      background: var(--cream);
+      padding: 3.5rem var(--section-px);
+      border-top: 1px solid rgba(27, 77, 62, 0.1);
+      border-bottom: 1px solid rgba(27, 77, 62, 0.1);
+    }
+    #reviews .eyebrow {
+      text-align: center;
+      color: var(--green);
+    }
+    #reviews .section-title {
+      text-align: center;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+    .reviews-subtitle {
+      max-width: 760px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-size: 0.92rem;
+      color: #5e625f;
+      line-height: 1.7;
+    }
+    .reviews-summary {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 0 auto 1.75rem;
+      flex-wrap: wrap;
+      font-family: var(--font-alt);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      color: #4b534f;
+    }
+    .reviews-summary span {
+      background: rgba(27, 77, 62, 0.06);
+      border: 1px solid rgba(27, 77, 62, 0.12);
+      padding: 0.45rem 0.7rem;
+    }
+    .reviews-marquee {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(27, 77, 62, 0.14);
+      border-radius: 2px;
+      padding: 1.1rem 0;
+    }
+    .reviews-track {
+      display: flex;
+      width: max-content;
+      gap: 1rem;
+      padding: 0 1rem;
+      animation: reviewsScroll 80s linear infinite;
+      will-change: transform;
+    }
+    .reviews-marquee:hover .reviews-track {
+      animation-play-state: paused;
+    }
+    .review-chip {
+      width: min(430px, calc(100vw - 5rem));
+      background: #faf9f5;
+      border: 1px solid rgba(27, 77, 62, 0.12);
+      border-radius: 2px;
+      padding: 1rem 1rem 0.95rem;
+    }
+    .review-chip p {
+      margin: 0 0 0.85rem;
+      font-size: 0.9rem;
+      color: #3f3f3f;
+      line-height: 1.65;
+    }
+    .review-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: #6a6a6a;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font-alt);
+    }
+    .review-stars {
+      color: var(--amber);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    @keyframes reviewsScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     #footer {
@@ -1222,68 +1201,6 @@
 </div>
 
 
-<!-- ======================================================== EASTER / VEĽKÁ NOC -->
-<section class="easter-banner" aria-labelledby="easter-banner-heading">
-  <div class="easter-banner-inner">
-    <div class="easter-banner-photos">
-      <figure>
-        <img
-          src="Assets/velka_noc.jpg"
-          alt="Choteboř 12° zelené pivo na čape — veľkonočný špeciál v The Gentlemen's Beer Shop"
-          width="1080"
-          height="1350"
-          loading="lazy"
-        />
-      </figure>
-      <figure>
-        <img
-          src="Assets/velka_noc_otvaracie.jpg"
-          alt="Otváracie hodiny počas veľkonočných sviatkov — The Gentlemen's Beer Shop, Komárno"
-          width="1365"
-          height="2048"
-          loading="lazy"
-        />
-      </figure>
-    </div>
-    <div class="easter-banner-copy">
-      <p class="eyebrow">Veľká noc · Húsvét · 2026</p>
-      <h2 id="easter-banner-heading" class="easter-banner-title">
-        Zelené Choteboř 12° je na čape — poďte si užiť sviatky s nami
-      </h2>
-
-      <div lang="sk">
-        <span class="easter-lang-label">Slovenčina</span>
-        <p>
-          Veľkonočný špeciál <strong>Choteboř 12°</strong> (4,9&nbsp;%) je konečne narazený a čaká na vás.
-          Vychutnajte si toto unikátne zelené pivo, kým sa neminie.
-        </p>
-      </div>
-      <div lang="hu">
-        <span class="easter-lang-label">Magyar</span>
-        <p>
-          A <strong>Choteboř 12°</strong> (4,9&nbsp;%) húsvéti különlegesség végre csapon van és vár rátok.
-          Élvezzétek ki ezt az egyedi zöld sört, amíg a készlet tart.
-        </p>
-      </div>
-
-      <div class="easter-banner-welcome">
-        <p lang="sk">
-          Milí zákazníci, tešíme sa na vás aj počas veľkonočných sviatkov.
-        </p>
-        <p lang="hu">
-          Kedves vendégeink, a húsvéti ünnepek alatt is szeretettel várunk benneteket.
-        </p>
-      </div>
-
-      <div class="easter-banner-actions">
-        <a class="btn" href="#hours">Otváracie hodiny</a>
-        <a class="btn btn--outline" href="#beers">Čapované pivá</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ======================================================== ABOUT -->
 <section id="about">
   <div class="about-grid">
@@ -1326,10 +1243,7 @@
         alt="Collection of craft beer cans"
         loading="lazy"
       />
-      <div class="about-badge">
-        <div class="about-badge-num">7×</div>
-        <div class="about-badge-text">Nové pivá každý týždeň</div>
-      </div>
+     
     </div>
   </div>
 </section>
@@ -1562,6 +1476,32 @@
 </section>
 
 
+<!-- ======================================================== REVIEWS -->
+<section id="reviews" data-google-reviews-endpoint="">
+  <p class="eyebrow">Napísali o nás</p>
+  <h2 class="section-title">Google recenzie</h2>
+  <p class="reviews-subtitle">
+    Reálne hodnotenia od našich hostí. Recenzie sa posúvajú sprava doľava
+    a priebežne ich vieme načítavať z Google endpointu.
+  </p>
+  <div class="reviews-summary" aria-label="Google hodnotenie">
+    <span>Hodnotenie: 4.8 ★</span>
+    <span>Recenzie: 599</span>
+  </div>
+  <div class="reviews-marquee" aria-live="polite">
+    <div class="reviews-track" id="reviewsTrack">
+      <article class="review-chip">
+        <p>Načítavam recenzie...</p>
+        <div class="review-meta">
+          <span>Google</span>
+          <span class="review-stars" aria-hidden="true">★★★★★</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
 <!-- ======================================================== FOOTER -->
 <footer id="footer">
   <p class="footer-copy">
@@ -1618,8 +1558,126 @@
     }, 3000);
   }
 
+  /* ---- Reviews marquee ---- */
+  const DEFAULT_SCRAPED_REVIEWS = [
+    {
+      author: 'Vojtech Molnár',
+      rating: 4,
+      text: 'Bol som tu cez pracovný deň po 12. hodine. Miesto je čisté a túto dobu skoro prázdne. Ponuka pív je ohromujúca medzi 80 až 100 druhov piva podľa sezóny. Pozor piatok a sobota sa stoly rezervujú. Na toalete bola maximálna čistota. Aj…'
+    },
+    {
+      author: 'Pavol Ďurkovič',
+      rating: 5,
+      text: 'Sympaticky pivny podnik, ktory som si vybral za ciel bicyklovacky. V recenzii som sa docital, ze niekto isiel z okolia Trnavy 100km do Komarna. Tak ja som urobil to iste z Bernolakova a nelutujem. Maju viac druhov piva z roznych pivovarov,…'
+    },
+    {
+      author: 'Matúš Hrabčák',
+      rating: 4,
+      text: 'Dobre miesto na remeselne pivko. Okrem capovaneho maju aj flase na predaj. Obsluha trosku nestihala, ale inak to bolo v poriadku.'
+    },
+    {
+      author: 'Adam Gersic',
+      rating: 5,
+      text: 'Kvôli tomu som šiel 100km na bicykli !!! A stálo to za to! Výborne pivo a ešte lepšia obsluha!!! Najviac som si to tam užil a chutilo tak moc že domov sa mi nechcelo :) Samozrejme batoh plný piva 🤣😂…'
+    },
+    {
+      author: 'Tímea Miklášová',
+      rating: 5,
+      text: 'Vynikajúca nátierka a najlepšia quesadilla 😊 Dobré pivká a super atmosféra :)…'
+    },
+    {
+      author: 'Milan Jantošík',
+      rating: 5,
+      text: 'Top čašníčky, veľmi milé a rýchle. Pivo reálne do 15sekúnd, dobré jedlo pivo všetko top. Určite sem choďte keď ste v Komárne. 👌👌👌…'
+    },
+    {
+      author: 'Ľuboš Bathó',
+      rating: 5,
+      text: 'Ak si chcete vychutnať vynikajúce pivo v peknom prostredí tak jedine sem. Veľmi milá obsluha :)'
+    },
+    {
+      author: 'Kristina Takacova',
+      rating: 5,
+      text: 'Ked von na pivo v Komarne tak jedine sem :) obsluha mila. Ked pivo memate radi, robia super limonady.'
+    }
+  ];
+
+  function createReviewMarkup(review) {
+    const text = review.text.length > 220 ? `${review.text.slice(0, 217)}...` : review.text;
+    const author = review.author || 'Google hosť';
+    const ratingValue = Math.max(1, Math.min(5, Number(review.rating) || 5));
+    const stars = '★'.repeat(ratingValue) + '☆'.repeat(5 - ratingValue);
+    return `
+      <article class="review-chip" aria-label="Google recenzia od ${author}">
+        <p>"${text}"</p>
+        <div class="review-meta">
+          <span>${author}</span>
+          <span class="review-stars" aria-hidden="true">${stars}</span>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderReviewsMarquee(reviews) {
+    const track = document.getElementById('reviewsTrack');
+    if (!track) return;
+
+    const validReviews = Array.isArray(reviews)
+      ? reviews
+        .filter((review) => review && typeof review.text === 'string' && review.text.trim())
+        .map((review) => ({
+          author: String(review.author || review.author_name || 'Google hosť'),
+          rating: Number(review.rating || review.stars || 5),
+          text: String(review.text).trim()
+        }))
+      : [];
+
+    if (!validReviews.length) {
+      track.innerHTML = `
+        <article class="review-chip">
+          <p>Recenzie sa momentálne nepodarilo načítať.</p>
+          <div class="review-meta">
+            <span>Google</span>
+            <span class="review-stars" aria-hidden="true">☆☆☆☆☆</span>
+          </div>
+        </article>
+      `;
+      return;
+    }
+
+    const source = validReviews.slice(0, 8);
+    const cards = source.map(createReviewMarkup).join('');
+    track.innerHTML = cards + cards;
+  }
+
+  async function loadLocalFallbackReviews() {
+    renderReviewsMarquee(DEFAULT_SCRAPED_REVIEWS);
+  }
+
+  async function loadGoogleReviews() {
+    const reviewsSection = document.getElementById('reviews');
+    if (!reviewsSection) return;
+
+    const endpoint = (reviewsSection.dataset.googleReviewsEndpoint || window.GOOGLE_REVIEWS_ENDPOINT || '').trim();
+    if (!endpoint) {
+      await loadLocalFallbackReviews();
+      return;
+    }
+
+    try {
+      const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const payload = await response.json();
+      const reviews = Array.isArray(payload) ? payload : payload.reviews;
+      renderReviewsMarquee(reviews);
+    } catch (error) {
+      await loadLocalFallbackReviews();
+    }
+  }
+
   /* ---- Simple scroll-reveal for cards ---- */
-  const revealEls = document.querySelectorAll('.beer-card, .about-grid, .gallery-grid');
+  const revealEls = document.querySelectorAll('.beer-card, .about-grid, .gallery-grid, #reviews');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1636,6 +1694,8 @@
     el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
     io.observe(el);
   });
+
+  loadGoogleReviews();
 </script>
 
 </body>
