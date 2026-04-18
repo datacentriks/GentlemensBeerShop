@@ -698,6 +698,26 @@
 
 
     /* ============================================================
+       NOVINKY
+    ============================================================ */
+    #novinky {
+      padding: var(--section-py) var(--section-px);
+      background: var(--white);
+      border-top: 1px solid rgba(27, 77, 62, 0.08);
+    }
+    #novinky .beers-header {
+      margin-bottom: 3rem;
+    }
+    .novinky-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+
+    /* ============================================================
        GALLERY
     ============================================================ */
     #gallery {
@@ -1127,6 +1147,7 @@
 
   <ul class="nav-links" role="navigation" aria-label="Main navigation">
     <li><a href="#about">O nás</a></li>
+    <li><a href="#novinky">Novinky</a></li>
     <li><a href="#beers">Pivá</a></li>
     <li><a href="#gallery">Galéria</a></li>
     <li><a href="#hours">Hodiny</a></li>
@@ -1145,6 +1166,7 @@
 <!-- Mobile drawer -->
 <nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
   <a href="#about" onclick="closeDrawer()">O nás</a>
+  <a href="#novinky" onclick="closeDrawer()">Novinky</a>
   <a href="#beers" onclick="closeDrawer()">Pivá</a>
   <a href="#gallery" onclick="closeDrawer()">Galéria</a>
   <a href="#hours" onclick="closeDrawer()">Hodiny</a>
@@ -1162,11 +1184,11 @@
       The <em>Gentlemen's</em><br>Beer Shop
     </h1>
     <p class="hero-sub">
-      Kurátorský výber tých najzaujímavejších craft pív zo celého sveta.
+      Kurátorský výber tých najzaujímavejších remeselných pív z celého sveta.
       Pre tých, ktorí vedia, čo chcú.
     </p>
     <div class="hero-actions">
-      <a class="btn" href="#beers">Pozri ponuku</a>
+      <a class="btn" href="#novinky">Pozri novinky</a>
       <a class="btn btn--outline" href="#contact">Navštívte nás</a>
     </div>
   </div>
@@ -1208,19 +1230,18 @@
       <p class="eyebrow">O nás</p>
       <h2 class="section-title">Viac ako len<br>pivný bar.</h2>
       <p>
-        <strong>The Gentlemen's Beer Shop</strong> je miesto, kde craft pivo stretáva kultúru.
-        Starostlivo kurujeme výber pív od najlepších svetových pivovarov —
-        od hazardných hazy IPA až po komplexné tmavé lagery.
+        <strong>The Gentlemen's Beer Shop</strong> je miesto, kde moderné remeselné pivo stretáva tradičnú pivárenskú kultúru.
+        Starostlivo udržiavame výber pív od najlepších lokálnych a svetových pivovarov.
+        Od hazy IPA, cez tradičné české ležiaky, až po komplexné tmavé stouty.
       </p>
       <p>
         Každé pivo v našej ponuke je vybrané s rovnakým dôrazom na kvalitu,
-        remeslo a charakter. Nájdete tu limitované edície s umeleckými etiketami,
+        remeslo a charakter. Nájdete u nás limitované edície s umeleckými etiketami,
         fľaše, ktoré hovoria príbeh, aj klasické čapované pivá priamo z pivovaru.
       </p>
       <p>
-        Okrem piva ponúkame jedlo, ktoré sa k nemu hodí — a priestor, v ktorom
-        sa cítite dobre, bez ohľadu na to, či prídete sami, s priateľmi alebo
-        s novým pivom, o ktorom chcete vedieť viac.
+        Okrem piva ponúkame aj malé snacky, ktoré sa k nemu hodia a priestor, v ktorom
+        sa cítite dobre, bez ohľadu na to, či prídete sami, alebo priateľmi.
       </p>
       <div class="about-stats">
         <div class="stat">
@@ -1245,6 +1266,117 @@
       />
      
     </div>
+  </div>
+</section>
+
+
+<!-- ======================================================== NOVINKY -->
+<section id="novinky">
+  <div class="beers-header">
+    <div>
+      <p class="eyebrow">Čerstvé v chladničke</p>
+      <h2 class="section-title">Novinky, čo rozpália<br>chmeľové bunky</h2>
+    </div>
+    <a class="btn btn--green" href="#contact">Prídi ochutnať</a>
+  </div>
+
+  <div class="novinky-grid">
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="Assets/Novinky/other_half_broccoli.jpeg" alt="Other Half Broccoli DDH IPA plechovka" loading="lazy" />
+        <div class="beer-card-abv">Novinka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">DDH IPA · Other Half</div>
+        <h3 class="beer-card-name">Broccoli</h3>
+        <p class="beer-card-desc">
+          Nie len pre vegetariánov, ale pre odvážnych. Dvojitý chmeľ a obrovská aróma, ktorá ti zastaví rozprávanie v polovici vety.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>DDH / Hazy IPA</span></div>
+          <div>Pôvod: <span>USA</span></div>
+          <div>Vibe: <span>„Wow.“</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="Assets/Novinky/other_half_tens_of_hundreds_ipa.jpeg" alt="Other Half Tens of Hundreds IPA plechovka" loading="lazy" />
+        <div class="beer-card-abv">Novinka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">American IPA · Other Half</div>
+        <h3 class="beer-card-name">Tens of Hundreds</h3>
+        <p class="beer-card-desc">
+          Čísla neklamú.V každom dúšku je plno chmeľovej akcie. Jasná, pitná IPA z Brooklynu. Na jedno to dnes fakt nestačí.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>American IPA</span></div>
+          <div>Pôvod: <span>USA</span></div>
+          <div>Tempo: <span>Full gas</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="Assets/Novinky/siberia_ipa_zoom.jpeg" alt="Sibeeria IPA Zoom plechovka" loading="lazy" />
+        <div class="beer-card-abv">Novinka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">IPA · Sibeeria</div>
+        <h3 class="beer-card-name">IPA Zoom</h3>
+        <p class="beer-card-desc">
+          Zoomni na chuť. Živá horkosť, citrus a pocit „áno, ešte jedno“. Česká IPA, čo vie, prečo si ťa našla.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>IPA</span></div>
+          <div>Pôvod: <span>CZ</span></div>
+          <div>Nálada: <span>Piatok o piatej</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="Assets/Novinky/other_half_juice_jogger_ipa.jpeg" alt="Other Half Juice Jogger IPA plechovka" loading="lazy" />
+        <div class="beer-card-abv">Novinka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">NEIPA · Other Half</div>
+        <h3 class="beer-card-name">Juice Jogger</h3>
+        <p class="beer-card-desc">
+          Beh si dáš ráno a Juice Jogger večer. Šťavnatá NEIPA, čo rozbehne tropické tóny rýchlejšie ako playlist na párty.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>NEIPA</span></div>
+          <div>Pôvod: <span>USA</span></div>
+          <div>Energia: <span>Šťava ON</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="beer-card">
+      <div class="beer-card-thumb">
+        <img src="Assets/Novinky/other_half_green_city_green_flowers.jpeg" alt="Other Half Green City Green Flowers IPA plechovka" loading="lazy" />
+        <div class="beer-card-abv">Novinka</div>
+      </div>
+      <div class="beer-card-body">
+        <div class="beer-tag">IPA · Other Half</div>
+        <h3 class="beer-card-name">Green City / Green Flowers</h3>
+        <p class="beer-card-desc">
+          Mesto v zelenom, kvety v nose. Jemné kvetinové nóty, ktoré sa neboja ani poriadnej dávky chmeľa.
+        </p>
+        <div class="beer-detail-row">
+          <div>Štýl: <span>IPA</span></div>
+          <div>Pôvod: <span>USA</span></div>
+          <div>Aróma: <span>Kvitne</span></div>
+        </div>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -1509,6 +1641,7 @@
   </p>
   <nav class="footer-links" aria-label="Footer navigation">
     <a href="#about">O nás</a>
+    <a href="#novinky">Novinky</a>
     <a href="#beers">Pivá</a>
     <a href="#contact">Kontakt</a>
     <!-- TODO: Link to privacy policy page -->
